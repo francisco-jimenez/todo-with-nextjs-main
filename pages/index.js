@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import TodoItem from "./components/TodoItem";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import LocaleSwitcher from "./components/LocaleSwitcher";
 
 const url = "http://localhost:3000/api/task";
 
@@ -69,6 +70,7 @@ export default function Home(props) {
 
   return (
     <main className={styles.main}>
+      <LocaleSwitcher />
       <h1 className={styles.heading}>TO-DO</h1>
       <div className={styles.container}>
         <form onSubmit={addTask} className={styles.form_container}>
