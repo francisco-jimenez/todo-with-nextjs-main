@@ -9,13 +9,13 @@ To get started with this app, you will need to have Node.js and npm installed on
 1. Clone the repository to your local machine.
 
 ```bash
-git clone https://github.com/<your-username>/<your-repository-name>.git
+git clone https://github.com/francisco-jimenez/todo-with-nextjs-main.git
 ```
 
 2. Change into the project directory.
 
 ```bash
-cd <your-repository-name>
+cd todo-with-nextjs-main
 ```
 
 3. Install the dependencies.
