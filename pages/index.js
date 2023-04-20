@@ -2,12 +2,15 @@ import { useState } from "react";
 import axios from "axios";
 import styles from "../styles/Home.module.css";
 import TodoItem from "./components/TodoItem";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 const url = "http://localhost:3000/api/task";
 
 export default function Home(props) {
   const [tasks, setTasks] = useState(props.tasks);
   const [task, setTask] = useState({ task: "" });
+  const { t } = useTranslation("common");
 
   const handleChange = ({ currentTarget: input }) => {
     input.value === ""
@@ -72,12 +75,12 @@ export default function Home(props) {
           <input
             className={styles.input}
             type="text"
-            placeholder="Task to be done..."
+            placeholder={t("task-to-be-done")}
             onChange={handleChange}
             value={task.task}
           />
           <button type="submit" className={styles.submit_btn}>
-            {"Add"}
+            {t("add-todo")}
           </button>
         </form>
         {tasks.map((task) => TodoItem(task, updateTask, deleteTask))}
@@ -87,11 +90,12 @@ export default function Home(props) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ locale }) => {
   const { data } = await axios.get(url);
   return {
     props: {
       tasks: data.data,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 };
